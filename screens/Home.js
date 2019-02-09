@@ -7,7 +7,7 @@ export default class Home extends Component {
     render() {
         return (
             <View style={styles.view}>
-                <Header title="Home"/>
+                <Header title="Home" left={{name: "ios-cog"}} noright/>
                 <FlatList
                     data={[
                         {name: "Buy Solar", background: "#1E90FF"},

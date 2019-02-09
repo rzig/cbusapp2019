@@ -4,10 +4,14 @@ import Header from '../components/Header';
 import ActionCard from '../components/ActionCard';
 
 export default class Home extends Component {
+    static navigationOptions = {
+        title: "Home",
+        header: <Header title="Home" left={{name: "ios-cog"}}/>
+    }
     render() {
+        alert(this.props.navigation.getParam("testParam"))
         return (
             <View style={styles.view}>
-                <Header title="Home" left={{name: "ios-cog"}} noright/>
                 <FlatList
                     data={[
                         {name: "Buy Solar", background: "#1E90FF"},
@@ -33,4 +37,4 @@ const styles = StyleSheet.create({
         fontFamily: "AvenirLTStd-Medium",
         fontSize: 16
     }
-})
+});

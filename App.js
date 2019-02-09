@@ -8,11 +8,12 @@
  */
 
 import React, {Component} from 'react';
-import { createSwitchNavigator, createAppContainer } from "react-navigation";
+import { createStackNavigator, createAppContainer } from "react-navigation";
 import Home from './screens/Home';
+import Header from './components/Header';
 
 
-const AppNavigator = createSwitchNavigator({
+const AppNavigator = createStackNavigator({
   Home: {
     screen: Home
   }

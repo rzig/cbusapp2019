@@ -2,11 +2,12 @@ import React, {Component} from 'react';
 import {View, Text, StyleSheet, FlatList} from 'react-native';
 import Header from '../components/Header';
 import ActionCard from '../components/ActionCard';
+import withHeader from '../helpers/withHeader';
 
-export default class Home extends Component {
-    static navigationOptions = {
+class Home extends Component {
+    static screenInfo = {
         title: "Home",
-        header: <Header title="Home" left={{name: "ios-cog"}}/>
+        left: {name: "ios-cog"}
     }
     render() {
         alert(this.props.navigation.getParam("testParam"))
@@ -38,3 +39,5 @@ const styles = StyleSheet.create({
         fontSize: 16
     }
 });
+
+export default withHeader(Home);

@@ -12,16 +12,16 @@ const ActionCard = ({name, background, onPress}) => {
 
 const styles = StyleSheet.create({
     view: {
-        width: 200,
+        width: 145,
         borderRadius: 16,
-        height: 200
+        height: 145
     },
     text: {
         position: "absolute",
         bottom: 0,
         fontFamily: "AvenirLTStd-Medium",
         color: "#fff",
-        fontSize: 35,
+        fontSize: 20,
         paddingLeft: 10,
         paddingBottom: 10
     }

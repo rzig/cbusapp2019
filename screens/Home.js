@@ -1,16 +1,24 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, FlatList} from 'react-native';
-import Header from '../components/Header';
+import {View, Text, StyleSheet, FlatList, TouchableHighlight} from 'react-native';
 import ActionCard from '../components/ActionCard';
 import withHeader from '../helpers/withHeader';
+import TestBox from '../components/testbox';
 
 class Home extends Component {
     static screenInfo = {
         title: "Home",
         left: {name: "ios-cog"}
     }
+
+    state = {
+        visible: true
+    }
+
+    toggleVisible() {
+        this.setState({visible: !this.state.visible});
+    }
+
     render() {
-        alert(this.props.navigation.getParam("testParam"))
         return (
             <View style={styles.view}>
                 <FlatList
@@ -19,7 +27,7 @@ class Home extends Component {
                         {name: "Join a Group", background: "#1E90FF"},
                         {name: "Savings Calculator", background: "#1E90FF"}
                     ]}
-                    renderItem={(item, i) => <ActionCard name={item.item.name} background={item.item.background}/>}
+                    renderItem={(item, i) => <ActionCard name={item.item.name} background={item.item.background} onPress={() => alert("hey")}/>}
                     keyExtractor={(i, k) => i.name}
                 />
             </View>

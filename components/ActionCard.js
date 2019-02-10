@@ -1,22 +1,20 @@
 import React from 'react';
 import {View, Text, StyleSheet, TouchableWithoutFeedback} from 'react-native';
+import pressable from '../helpers/pressable';
 
 const ActionCard = ({name, background, onPress}) => {
     return (
-        <TouchableWithoutFeedback onPress={onPress}>
-            <View style={Object.assign({}, styles.view, {backgroundColor: background})}>
-                <Text style={styles.text}>{name}</Text>
-            </View>
-        </TouchableWithoutFeedback>
+        <View style={Object.assign({}, styles.view, {backgroundColor: background})} onPress={onPress}>
+            <Text style={styles.text}>{name}</Text>
+        </View>
     )
 }
 
 const styles = StyleSheet.create({
     view: {
-        width: "100%",
+        width: 200,
         borderRadius: 16,
-        height: 200,
-        marginBottom: 16
+        height: 200
     },
     text: {
         position: "absolute",
@@ -29,4 +27,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default ActionCard;
+export default pressable(ActionCard);

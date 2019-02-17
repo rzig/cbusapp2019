@@ -2,6 +2,12 @@ import React, {Component} from 'react';
 import {View, Text, StyleSheet, FlatList, TouchableHighlight} from 'react-native';
 import ActionCard from '../components/ActionCard';
 import withHeader from '../helpers/withHeader';
+import posed from 'react-native-pose';
+
+const AnimBox = posed.View({
+    out: {marginBottom: 16, left: "300%", transition: {type: "spring", stiffness: 250, damping: 20}},
+    in: {marginBottom: 16, left: 0, transition: {type: "spring", stiffness: 250, damping: 20}}
+})
 
 class Home extends Component {
     static screenInfo = {
@@ -10,11 +16,16 @@ class Home extends Component {
     }
 
     state = {
-        visible: true
+        visible: true,
+        cards: "out"
     }
 
     toggleVisible() {
         this.setState({visible: !this.state.visible});
+    }
+
+    componentDidMount() {
+        this.setState({cards: "in"})
     }
 
     render() {
@@ -41,7 +52,7 @@ class Home extends Component {
                         {name: "Learn Solar", background: "#1E90FF"},
                         {name: "Plan Solar", background: "#1E90FF"}
                     ]}
-                    renderItem={(item, i) => <View style={{marginBottom: 16}}><ActionCard name={item.item.name} background={item.item.background} onPress={() => alert("hey")}/></View>}
+                    renderItem={(item, i) => <AnimBox pose={this.state.cards}><ActionCard name={item.item.name} background={item.item.background} onPress={() => alert("hey")}/></AnimBox>}
                     keyExtractor={(i, k) => i.name}
                     contentContainerStyle={{display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "space-evenly"}}
                 />

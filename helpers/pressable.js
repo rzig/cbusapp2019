@@ -53,7 +53,7 @@ const pressable = (WrappedComponent) => {
             const pressFn = els.props.onPress || emptyFn;
             return (
                 <View style={parentStyle}>
-                    <TouchableWithoutFeedback onPressIn={() => this.toggle()} onPressOut={() => {this.toggle(); pressFn()}}>
+                    <TouchableWithoutFeedback onPressIn={() => this.toggle()} onPressOut={() => {this.toggle()}} onPress={() => pressFn()}>
                         <PoseBox pose={this.state.shrunk ? "small" : "big"}>
                             {newEls}
                         </PoseBox>

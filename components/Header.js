@@ -1,11 +1,11 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+import {View, Text, StyleSheet, TouchableWithoutFeedback, TouchableOpacity} from 'react-native';
+import Icon from 'react-native-vector-icons/Feather';
 
-const Header = ({title, left, right}) => {
+const Header = ({title, left, right, onLeft}) => {
     return (
         <View style={styles.view}>
-            <MyIcon icon={left}/>
+            <TouchableOpacity onPress={() => onLeft()}><MyIcon icon={left}/></TouchableOpacity>
             <Text style={styles.text}>{title}</Text>
             <MyIcon icon={right} right/>
         </View>
@@ -22,7 +22,7 @@ const MyIcon = ({icon, right}) => {
         style = Object.assign({}, style, styles.rightIcon);
     }
     return (
-        <Icon name={"ios-cog"} size={30} color={color} style={style}/>
+        <Icon name={icon || "chevron-left"} size={30} color={color} style={style}/>
     )
 }
 
@@ -34,7 +34,8 @@ const styles = StyleSheet.create({
         display: "flex",
         flexDirection: "row",
         paddingLeft: 16,
-        paddingRight: 16
+        paddingRight: 16,
+        alignItems: "center"
     },
     text: {
         color: "#000",

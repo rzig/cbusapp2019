@@ -11,7 +11,7 @@ const AnimBox = posed.View({
 
 const VisibilityBox = posed.View({
     visible: {right: 0, transition: {type: "spring", stiffness: 250, damping: 20}},
-    invisible: {right: "300%", transition: {type: "spring", stiffness: 250, damping: 20}}
+    invisible: {right: "500%", transition: {type: "spring", stiffness: 250, damping: 20}}
 })
 
 class Home extends Component {
@@ -29,12 +29,10 @@ class Home extends Component {
     }
 
     componentDidMount() {
-        this.setState({cards: "in"})
+        this.setState({cards: "in", visible: true})
     }
 
     navigate(route) {
-        // we "slide out"
-        this.toggleVisible();
         this.props.navigation.navigate(route);
     }
 

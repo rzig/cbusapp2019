@@ -4,6 +4,7 @@ import withHeader from '../helpers/withHeader';
 import Button from '../components/Button';
 import ValueSlider from '../components/ValueSlider';
 import InfoCard from '../components/InfoCard';
+import Container from '../components/Container';
 
 class Buy extends Component {
     static screenInfo = {
@@ -41,7 +42,7 @@ class Buy extends Component {
         const percentageSold = this.state.excessToSell / 100;
         const finalCost = rawCost - (percentageSold * rawCost);
         return (
-            <View style={styles.view}>
+            <Container>
                 <InfoCard
                     left={{header: numberWithCommas(Math.round(finalCost)), subheader: "upfront cost"}}
                     right={{header: "1000", subheader: "saved per year"}}
@@ -82,44 +83,10 @@ class Buy extends Component {
                     </View>
                     <Button name="Buy Solar"/>
                 </View>
-            </View>
+            </Container>
         )
     }
 }
-
-const styles = StyleSheet.create({
-    view: {
-        backgroundColor: "#fff",
-        height: "100%",
-        paddingLeft: 16,
-        paddingRight: 16
-    },
-    inputContainer: {
-        display: "flex",
-        flexDirection: "row",
-        alignItems: "center",
-        paddingBottom: 8,
-        marginBottom: 16,
-        borderBottomWidth: 1,
-        borderBottomColor: "#ccc"
-    },
-    text: {
-        fontFamily: "AvenirLTStd-Medium",
-        fontSize: 16
-    },
-    impactText: {
-        fontFamily: "AvenirLTStd-Medium",
-        color: "#000",
-        fontSize: 49,
-        textAlign: "center"
-    },
-    subImpactText: {
-        fontFamily: "AvenirLTStd-Medium",
-        color: "#aaa",
-        fontSize: 18,
-        textAlign: "center"
-    }
-});
 
 function numberWithCommas(x) {
     var parts = x.toString().split(".");

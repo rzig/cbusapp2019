@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import withHeader from '../helpers/withHeader';
-import Slider from 'react-native-slider';
 import Button from '../components/Button';
+import ValueSlider from '../components/ValueSlider';
 
 class Buy extends Component {
     static screenInfo = {
@@ -53,36 +53,35 @@ class Buy extends Component {
                         <Text style={styles.subImpactText}>saved per year</Text>
                     </View>
                 </View>
-                <View style={styles.inputContainer}>
-                    <View style={{flexGrow: 2}}>
-                        <Text style={styles.text}>Number of solar panels</Text>
-                        <Slider minimumValue={this.state.minSolarPanels} maximumValue={this.state.maxSolarPanels} value={this.state.solarPanels} step={1} onValueChange={n => this.setState({solarPanels: n})}/>
-                    </View>
-                    <View style={styles.rightInput}>
-                        <Text style={Object.assign({}, styles.impactText, {fontSize: 20})}>{this.state.solarPanels}</Text>
-                        <Text style={Object.assign({}, styles.subImpactText, {fontSize: 14})}>{"$" + this.state.perSolarPanelCost + " each"}</Text>
-                    </View>
-                </View>
-                <View style={styles.inputContainer}>
-                    <View style={{flexGrow: 2}}>
-                        <Text style={styles.text}>Your energy usage</Text>
-                        <Slider minimumValue={0} maximumValue={2000} value={this.state.kwhUsed} step={10} onValueChange={n => this.setState({kwhUsed: n})}/>
-                    </View>
-                    <View style={styles.rightInput}>
-                        <Text style={Object.assign({}, styles.impactText, {fontSize: 20})}>{(this.state.kwhUsed) + " kWh"}</Text>
-                        <Text style={Object.assign({}, styles.subImpactText, {fontSize: 14})}>per month</Text>
-                    </View>
-                </View>
-                <View style={styles.inputContainer}>
-                    <View style={{flexGrow: 2}}>
-                        <Text style={styles.text}>Solar energy to sell upfront</Text>
-                        <Slider minimumValue={0} maximumValue={60} value={this.state.excessToSell} step={1} onValueChange={n => this.setState({excessToSell: n})}/>
-                    </View>
-                    <View style={styles.rightInput}>
-                        <Text style={Object.assign({}, styles.impactText, {fontSize: 20})}>{(this.state.excessToSell) + "%"}</Text>
-                        <Text style={Object.assign({}, styles.subImpactText, {fontSize: 14})}>per month</Text>
-                    </View>
-                </View>
+                <ValueSlider
+                    name="Number of solar panels"
+                    min={this.state.minSolarPanels}
+                    max={this.state.maxSolarPanels}
+                    step={1}
+                    subtitle={"@254 each"}
+                    value={this.state.solarPanels}
+                    onChange={(n) => this.setState({solarPanels: n})}
+                />
+                <ValueSlider
+                    name="Your energy usage"
+                    min={0}
+                    max={2000}
+                    step={10}
+                    subtitle={"per month"}
+                    value={this.state.kwhUsed}
+                    units="kWh"
+                    onChange={(n) => this.setState({kwhUsed: n})}
+                />
+                <ValueSlider
+                    name="Solar energy to sell upfront"
+                    min={0}
+                    max={60}
+                    step={1}
+                    subtitle={"per month"}
+                    value={this.state.excessToSell}
+                    units="%"
+                    onChange={(n) => this.setState({excessToSell: n})}
+                /> 
                 <View style={{backgroundColor: "#ff000", position: "absolute", bottom: 0, margin: 16, right: 0}}>
                     <View style={{display: "flex", marginBottom: 8, flexDirection: "row", marginLeft: 16, marginRight: 16}}>
                         <Text style={Object.assign({}, styles.subImpactText, {fontSize: 16, marginRight: 16, flexGrow: 1, textAlign: "left"})}>Total cost</Text>
@@ -110,10 +109,6 @@ const styles = StyleSheet.create({
         marginBottom: 16,
         borderBottomWidth: 1,
         borderBottomColor: "#ccc"
-    },
-    rightInput: {
-        marginLeft: 16,
-        width: 92
     },
     text: {
         fontFamily: "AvenirLTStd-Medium",

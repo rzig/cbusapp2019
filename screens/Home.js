@@ -3,6 +3,7 @@ import {View, Text, StyleSheet, FlatList, TouchableHighlight} from 'react-native
 import ActionCard from '../components/ActionCard';
 import withHeader from '../helpers/withHeader';
 import posed from 'react-native-pose';
+import InfoCard from '../components/InfoCard';
 
 const AnimBox = posed.View({
     out: {marginBottom: 16, left: "300%", transition: {type: "spring", stiffness: 250, damping: 20}},
@@ -40,18 +41,10 @@ class Home extends Component {
         return (
             <VisibilityBox pose={this.state.visible ? 'visible':'invisible'}>
                 <View style={styles.view}>
-                    <View
-                        style={{borderColor: "#ccc", borderWidth: 2, borderRadius: 16, width: "100%", marginBottom: 16, padding: 12, display: "flex", flexDirection: "row", marginLeft: "auto", marginRight: "auto"}}
-                    >
-                        <View style={{flexGrow: 1}}>
-                            <Text style={styles.impactText}>$37</Text>
-                            <Text style={styles.subImpactText}>saved monthly</Text>
-                        </View>
-                        <View style={{flexGrow: 2}}>
-                            <Text style={styles.impactText}>25%</Text>
-                            <Text style={styles.subImpactText}>less carbon</Text>
-                        </View>
-                    </View>
+                    <InfoCard
+                        left={{header: "$37", subheader: "saved monthly"}}
+                        right={{header: "25%", subheader: "less carbon"}}
+                    />
                     <FlatList
                         data={[
                             {name: "Buy Solar", background: "#1E90FF", onPress: () => this.navigate("Buy")},

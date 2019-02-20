@@ -3,6 +3,7 @@ import {View, Text, StyleSheet} from 'react-native';
 import withHeader from '../helpers/withHeader';
 import Button from '../components/Button';
 import ValueSlider from '../components/ValueSlider';
+import InfoCard from '../components/InfoCard';
 
 class Buy extends Component {
     static screenInfo = {
@@ -41,18 +42,10 @@ class Buy extends Component {
         const finalCost = rawCost - (percentageSold * rawCost);
         return (
             <View style={styles.view}>
-                <View
-                    style={{borderColor: "#ccc", borderWidth: 2, borderRadius: 16, width: "100%", marginBottom: 16, padding: 12, display: "flex", flexDirection: "row", marginLeft: "auto", marginRight: "auto"}}
-                >
-                    <View style={{flexGrow: 1}}>
-                        <Text style={styles.impactText}>{numberWithCommas(Math.round(finalCost))}</Text>
-                        <Text style={styles.subImpactText}>upfront cost</Text>
-                    </View>
-                    <View style={{flexGrow: 2}}>
-                        <Text style={styles.impactText}>1,000</Text>
-                        <Text style={styles.subImpactText}>saved per year</Text>
-                    </View>
-                </View>
+                <InfoCard
+                    left={{header: numberWithCommas(Math.round(finalCost)), subheader: "upfront cost"}}
+                    right={{header: "1000", subheader: "saved per year"}}
+                />
                 <ValueSlider
                     name="Number of solar panels"
                     min={this.state.minSolarPanels}

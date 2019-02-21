@@ -1,5 +1,7 @@
 import React from 'react';
-import {View, Text, StyleSheet, TouchableWithoutFeedback} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
+import {fonts, colors, measures} from '../styles/base';
+import {calloutText} from '../styles/mixins';
 import pressable from '../helpers/pressable';
 
 const ActionCard = ({name, background, onPress}) => {
@@ -13,15 +15,13 @@ const ActionCard = ({name, background, onPress}) => {
 const styles = StyleSheet.create({
     view: {
         width: 145,
-        borderRadius: 16,
+        borderRadius: measures.borderRadius,
         height: 145
     },
     text: {
+        ...calloutText,
         position: "absolute",
         bottom: 0,
-        fontFamily: "AvenirLTStd-Medium",
-        color: "#fff",
-        fontSize: 20,
         paddingLeft: 10,
         paddingBottom: 10
     }

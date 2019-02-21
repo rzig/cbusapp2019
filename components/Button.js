@@ -1,6 +1,7 @@
 import React from 'react';
 import {StyleSheet, View, Text} from 'react-native';
-import pressable from '../helpers/pressable';
+import {colors, fonts} from '../styles/base';
+import { calloutText } from '../styles/mixins';
 
 const Button = ({name, onPress}) => {
     return (
@@ -15,18 +16,16 @@ export default Button;
 
 const styles = StyleSheet.create({
     view: {
-        backgroundColor: "#333",
+        backgroundColor: colors.dark,
         borderRadius: 50,
         width: 200,
         height: 50
     },
     text: {
-        color: "white",
+        ...calloutText,
         textAlign: "center",
-        fontFamily: "AvenirLTStd-Medium",
         top: "25%",
         padding: 0,
-        margin: 0,
-        fontSize: 20
+        margin: 0
     }
 })

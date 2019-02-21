@@ -1,5 +1,7 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
+import {colors, fonts, measures} from '../styles/base';
+import {flexContainer, bodyText, headerText} from '../styles/mixins';
 
 const InfoCard = ({left, right}) => {
     return (
@@ -20,15 +22,11 @@ export default InfoCard;
 
 const styles = StyleSheet.create({
     container: {
-        borderColor: "#ccc",
+        ...flexContainer,
+        borderColor: colors.medium,
         borderWidth: 2,
-        borderRadius: 16,
-        marginLeft: "auto",
-        marginRight: "auto",
-        display: "flex",
-        flexDirection: "row",
-        padding: 12,
-        marginBottom: 16,
+        borderRadius: measures.borderRadius,
+        marginBottom: measures.margin,
         width: "100%"
     },
     left: {
@@ -38,15 +36,12 @@ const styles = StyleSheet.create({
         flexGrow: 2
     },
     header: {
-        fontFamily: "AvenirLTStd-Medium",
-        color: "#000",
-        fontSize: 49,
+        ...headerText,
         textAlign: "center"
     },
     subheader: {
-        fontFamily: "AvenirLTStd-Medium",
-        color: "#aaa",
-        fontSize: 18,
+        ...bodyText,
+        color: colors.medium,
         textAlign: "center"
     }
 });

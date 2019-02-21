@@ -5,6 +5,8 @@ import Button from '../components/Button';
 import ValueSlider from '../components/ValueSlider';
 import InfoCard from '../components/InfoCard';
 import Container from '../components/Container';
+import { measures, colors } from '../styles/base';
+import { captionText } from '../styles/mixins';
 
 class Buy extends Component {
     static screenInfo = {
@@ -76,10 +78,10 @@ class Buy extends Component {
                     units="%"
                     onChange={(n) => this.setState({excessToSell: n})}
                 /> 
-                <View style={{backgroundColor: "#ff000", position: "absolute", bottom: 0, margin: 16, right: 0}}>
-                    <View style={{display: "flex", marginBottom: 8, flexDirection: "row", marginLeft: 16, marginRight: 16}}>
-                        <Text style={Object.assign({}, styles.subImpactText, {fontSize: 16, marginRight: 16, flexGrow: 1, textAlign: "left"})}>Total cost</Text>
-                        <Text style={Object.assign({}, styles.impactText, {fontSize: 16, textAlign: "right"})}>$4500</Text>
+                <View style={styles.cart}>
+                    <View style={styles.cartItem}>
+                        <Text style={styles.cartItemName}>Total cost</Text>
+                        <Text style={styles.cartPrice}>$4500</Text>
                     </View>
                     <Button name="Buy Solar"/>
                 </View>
@@ -93,5 +95,29 @@ function numberWithCommas(x) {
     parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     return parts.join(".");
 }
+
+const styles = StyleSheet.create({
+    cart: {
+        position: "absolute",
+        bottom: 0,
+        right: 0,
+        marginBottom: measures.margin
+    },
+    cartItem: {
+        display: "flex",
+        flexDirection: "row",
+        marginBottom: measures.margin / 2,
+        marginLeft: measures.margin,
+        marginRight: measures.margin
+    },
+    cartItemName: {
+        ...captionText,
+        color: colors.dark,
+        flexGrow: 2
+    },
+    cartPrice: {
+        ...captionText
+    }
+})
 
 export default withHeader(Buy);

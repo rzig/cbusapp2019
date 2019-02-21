@@ -1,6 +1,8 @@
 import React from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 import Slider from 'react-native-slider';
+import {colors, fonts, measures} from '../styles/base';
+import { flexContainer, captionText } from '../styles/mixins';
 
 const generateValueString = (value, units) => {
     if(units) {
@@ -41,35 +43,32 @@ export default ValueSlider;
 
 const styles = StyleSheet.create({
     container: {
-        display: "flex",
-        flexDirection: "row",
-        alignItems: "center",
-        paddingBottom: 8,
-        marginBottom: 16,
+        ...flexContainer,
+        padding: 0,
+        paddingBottom: measures.margin / 2,
+        marginBottom: measures.margin,
         borderBottomWidth: 1,
-        borderBottomColor: "#ccc"
+        borderBottomColor: colors.medium
     },
     left: {
         flexGrow: 2
     },
     right: {
-        marginLeft: 16,
+        marginLeft: measures.margin,
         width: 100
     },
     name: {
-        fontFamily: "AvenirLTStd-Medium",
-        fontSize: 16
+        fontFamily: fonts.primary,
+        fontSize: fonts.bodySize - 2
     },
     value: {
-        fontFamily: "AvenirLTStd-Medium",
-        color: "#000",
-        fontSize: 20,
+        fontFamily: fonts.primary,
+        color: colors.dark,
+        fontSize: fonts.bodySize + 2,
         textAlign: "center"
     },
     subtitle: {
-        fontFamily: "AvenirLTStd-Medium",
-        color: "#aaa",
-        fontSize: 14,
+        ...captionText,
         textAlign: "center"
     }
 });

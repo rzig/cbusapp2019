@@ -1,6 +1,8 @@
 import React from 'react';
-import {View, Text, StyleSheet, TouchableWithoutFeedback, TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
+import {colors, fonts, measures} from '../styles/base';
+import {flexContainer} from '../styles/mixins';
 
 const Header = ({title, left, right, onLeft}) => {
     return (
@@ -28,22 +30,16 @@ const MyIcon = ({icon, right}) => {
 
 const styles = StyleSheet.create({
     view: {
-        backgroundColor: "#fff",
-        paddingTop: 12,
-        paddingBottom: 12,
-        display: "flex",
-        flexDirection: "row",
-        paddingLeft: 16,
-        paddingRight: 16,
-        alignItems: "center"
+        ...flexContainer,
+        paddingLeft: measures.margin,
+        paddingRight: measures.margin
     },
     text: {
-        color: "#000",
-        fontSize: 21,
+        color: colors.dark,
+        fontSize: fonts.calloutSize,
         textAlign: "center",
-        fontFamily: "AvenirLTStd-Light",
-        flexGrow: 1,
-        padding: 0,
+        fontFamily: fonts.light,
+        flexGrow: 1
     },
     icon: {
         width: 40,

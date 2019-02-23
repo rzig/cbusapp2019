@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import { Text, StyleSheet, View, TouchableOpacity } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 import Container from '../components/Container';
+import CircleButton from '../components/CircleButton';
 import withHeader from '../helpers/withHeader';
-import { colors } from '../styles/base';
+import { colors, measures } from '../styles/base';
+import { bodyText, flexContainer } from '../styles/mixins';
 
 class Plan extends Component {
     static screenInfo = {
@@ -15,6 +17,10 @@ class Plan extends Component {
     render() {
         return (
             <Container style={styles.container}>
+                <Text style={styles.text}>
+                    Take between twenty and forty pictures of your home, from multiple angles.
+                    Once you're done, press next.
+                </Text>
                 <RNCamera
                     ref={ref => this.camera = ref}
                     style={styles.cam}
@@ -24,10 +30,8 @@ class Plan extends Component {
                     permissionDialogMessage="Please say yes"
                     captureAudio={false}
                 >
-                    <View style={{flex: 0, flexDirection: "row", justifyContent: "center"}}>
-                        <TouchableOpacity onPress={() => this.capture()}>
-                            <Text>Snap?</Text>
-                        </TouchableOpacity>
+                    <View style={styles.bottomBar}>
+                        <CircleButton size={50} color={colors.dark} onPress={() => this.capture()}/>
                     </View>
                 </RNCamera>
             </Container>
@@ -61,6 +65,19 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
         alignSelf: 'center',
         margin: 20,
+    },
+    bottomBar: {
+        ...flexContainer,
+        flex: 0,
+        height: 75,
+        justifyContent: "center",
+        width: "110%",
+        padding: 0,
+        marginLeft: -1.2  * measures.margin
+    },
+    text: {
+        ...bodyText,
+        marginBottom: measures.margin
     }
 });
 

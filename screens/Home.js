@@ -42,7 +42,7 @@ class Home extends Component {
                         {name: "Sell Solar", background: "#1E90FF", onPress: () => this.navigate("Buy")},
                         {name: "Savings Calculator", background: "#1E90FF", onPress: () => this.navigate("Buy")},
                         {name: "Learn Solar", background: "#1E90FF", onPress: () => this.navigate("Buy")},
-                        {name: "Plan Solar", background: "#1E90FF", onPress: () => this.navigate("Buy")}
+                        {name: "Plan Solar", background: "#1E90FF", onPress: () => this.navigate("Plan")}
                     ]}
                     renderItem={(item, i) => <AnimBox pose={this.state.cards}><ActionCard name={item.item.name} background={item.item.background} onPress={item.item.onPress}/></AnimBox>}
                     keyExtractor={(i, k) => i.name}

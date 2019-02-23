@@ -10,8 +10,8 @@
 import React, {Component} from 'react';
 import { createStackNavigator, createAppContainer } from "react-navigation";
 import Home from './screens/Home';
-import Header from './components/Header';
 import Buy from './screens/Buy';
+import Plan from './screens/Plan';
 import NavigationService from './NavigationService';
 
 
@@ -21,6 +21,9 @@ const AppNavigator = createStackNavigator({
   },
   Buy: {
     screen: Buy
+  },
+  Plan: {
+    screen: Plan
   }
 }, {initialRouteName: "Home"});
 

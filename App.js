@@ -8,24 +8,24 @@
  */
 
 import React, {Component} from 'react';
-import { createStackNavigator, createAppContainer } from "react-navigation";
+import { View, Text, StyleSheet } from 'react-native';
+import { createSwitchNavigator, createAppContainer } from "react-navigation";
 import Home from './screens/Home';
 import Buy from './screens/Buy';
 import Plan from './screens/Plan';
 import NavigationService from './NavigationService';
+import createProgressNavigator from './helpers/navigation/createProgressNavigator';
 
-
-const AppNavigator = createStackNavigator({
-  Home: {
-    screen: Home
+const routes = {
+  Plan: {
+    screen: Plan
   },
   Buy: {
     screen: Buy
-  },
-  Plan: {
-    screen: Plan
   }
-}, {initialRouteName: "Home"});
+};
+
+const AppNavigator = createProgressNavigator(routes, {initialRouteName: "Plan"});
 
 let AppContainer = createAppContainer(AppNavigator);
 

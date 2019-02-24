@@ -3,7 +3,7 @@ import {View} from 'react-native'
 
 const Container = ({children}) => {
     return (
-        <View style={{marginLeft: 16, marginRight: 16, height: "100%"}}>
+        <View style={{height: "100%", width: "100%"}}>
             {children}
         </View>
     )

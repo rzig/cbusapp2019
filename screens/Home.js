@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {FlatList} from 'react-native';
+import {FlatList, View} from 'react-native';
 import ActionCard from '../components/ActionCard';
 import withHeader from '../helpers/withHeader';
 import posed from 'react-native-pose';
@@ -30,7 +30,7 @@ class Home extends Component {
 
     render() {
         return (
-            <Container>
+            <View>
                 <InfoCard
                     left={{header: "$37", subheader: "saved monthly"}}
                     right={{header: "25%", subheader: "less carbon"}}
@@ -48,7 +48,7 @@ class Home extends Component {
                     keyExtractor={(i, k) => i.name}
                     contentContainerStyle={{display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "space-evenly"}}
                 />
-            </Container>
+            </View>
         )
     }
 }

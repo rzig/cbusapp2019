@@ -1,13 +1,15 @@
 import React from 'react';
-import {StyleSheet, View, Text} from 'react-native';
-import {colors, fonts} from '../styles/base';
+import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
+import {colors, fonts, measures} from '../styles/base';
 import { calloutText } from '../styles/mixins';
 
-const Button = ({name, onPress}) => {
+const Button = ({name, onPress, small, inverse}) => {
     return (
-        <View style={styles.view} onPress={onPress}>
-            <Text style={styles.text}>{name}</Text>
-        </View>
+        <TouchableOpacity onPress={onPress}>
+            <View style={[styles.view, small && styles.smallView, inverse && styles.inverseView]} onPress={onPress}>
+                <Text style={[styles.text, small && styles.smallText, inverse && styles.inverseText]}>{name}</Text>
+            </View>
+        </TouchableOpacity>
     )
 }
 
@@ -21,11 +23,27 @@ const styles = StyleSheet.create({
         width: 200,
         height: 50
     },
+    inverseView: {
+        backgroundColor: colors.light,
+        borderWidth: measures.thickBorder,
+        borderColor: colors.dark
+    },
+    smallView: {
+        width: 100,
+        borderRadius: 25,
+        backgroundColor: colors.dark,
+    },
     text: {
         ...calloutText,
         textAlign: "center",
         top: "25%",
         padding: 0,
         margin: 0
+    },
+    smallText: {
+        fontSize: fonts.calloutSize / 1.25
+    },
+    inverseText: {
+        color: colors.dark
     }
 })

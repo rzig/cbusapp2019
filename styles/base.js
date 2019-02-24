@@ -15,5 +15,8 @@ export const fonts = {
 
 export const measures = {
     borderRadius: 16,
-    margin: 16
+    margin: 16,
+    barHeight: 75,
+    thickBorder: 2,
+    thinBorder: 1
 }

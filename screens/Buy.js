@@ -78,13 +78,6 @@ class Buy extends Component {
                     units="%"
                     onChange={(n) => this.setState({excessToSell: n})}
                 /> 
-                <View style={styles.cart}>
-                    <View style={styles.cartItem}>
-                        <Text style={styles.cartItemName}>Total cost</Text>
-                        <Text style={styles.cartPrice}>$4500</Text>
-                    </View>
-                    <Button name="Buy Solar"/>
-                </View>
             </Container>
         )
     }

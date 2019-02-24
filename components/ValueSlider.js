@@ -43,6 +43,7 @@ export default ValueSlider;
 
 const styles = StyleSheet.create({
     container: {
+        width: "100%",
         ...flexContainer,
         padding: 0,
         paddingBottom: measures.margin / 2,

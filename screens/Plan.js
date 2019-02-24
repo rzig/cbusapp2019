@@ -8,15 +8,10 @@ import { colors, measures } from '../styles/base';
 import { bodyText, flexContainer } from '../styles/mixins';
 
 class Plan extends Component {
-    static screenInfo = {
-        title: "Plan",
-        left: "chevron-left",
-        onLeft: (nav) => nav.navigate("Home")
-    }
 
     render() {
         return (
-            <Container style={styles.container}>
+            <View>
                 <Text style={styles.text}>
                     Take between twenty and forty pictures of your home, from multiple angles.
                     Once you're done, press next.
@@ -34,7 +29,7 @@ class Plan extends Component {
                         <CircleButton size={50} color={colors.dark} onPress={() => this.capture()}/>
                     </View>
                 </RNCamera>
-            </Container>
+            </View>
         )
     }
 
@@ -77,8 +72,10 @@ const styles = StyleSheet.create({
     },
     text: {
         ...bodyText,
-        marginBottom: measures.margin
+        paddingBottom: .5 * measures.margin,
+        backgroundColor: colors.light,
+        zIndex: 1000
     }
 });
 
-export default withHeader(Plan);
+export default Plan;

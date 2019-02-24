@@ -10,7 +10,6 @@
 import React, {Component} from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { createSwitchNavigator, createAppContainer } from "react-navigation";
-import Home from './screens/Home';
 import Buy from './screens/Buy';
 import Plan from './screens/Plan';
 import NavigationService from './NavigationService';

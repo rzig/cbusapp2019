@@ -64,6 +64,7 @@
 		B78D727369714960870167F6 /* libRNCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B7ECFE3A0F1C459DBBCB9D7A /* libRNCamera.a */; };
 		A800DFC593E94E59988C732E /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8A51751F9A4E4F0EA26BAF1B /* Lato-Light.ttf */; };
 		DFC575518ABA45AE86F729FA /* Lato-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 065E38945BBA4892A5A17027 /* Lato-Medium.ttf */; };
+		AF9115908AFA44FB87D197D6 /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 24F4668149AC49B4822D3A7A /* Lato-Bold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -399,6 +400,7 @@
 		B7ECFE3A0F1C459DBBCB9D7A /* libRNCamera.a */ = {isa = PBXFileReference; name = "libRNCamera.a"; path = "libRNCamera.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		8A51751F9A4E4F0EA26BAF1B /* Lato-Light.ttf */ = {isa = PBXFileReference; name = "Lato-Light.ttf"; path = "../assets/fonts/Lato-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		065E38945BBA4892A5A17027 /* Lato-Medium.ttf */ = {isa = PBXFileReference; name = "Lato-Medium.ttf"; path = "../assets/fonts/Lato-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		24F4668149AC49B4822D3A7A /* Lato-Bold.ttf */ = {isa = PBXFileReference; name = "Lato-Bold.ttf"; path = "../assets/fonts/Lato-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -695,6 +697,7 @@
 				C29F8343E9B944BE86B963D7 /* Zocial.ttf */,
 				8A51751F9A4E4F0EA26BAF1B /* Lato-Light.ttf */,
 				065E38945BBA4892A5A17027 /* Lato-Medium.ttf */,
+				24F4668149AC49B4822D3A7A /* Lato-Bold.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1167,6 +1170,7 @@
 				505701CC64064380B21A98C0 /* Zocial.ttf in Resources */,
 				A800DFC593E94E59988C732E /* Lato-Light.ttf in Resources */,
 				DFC575518ABA45AE86F729FA /* Lato-Medium.ttf in Resources */,
+				AF9115908AFA44FB87D197D6 /* Lato-Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

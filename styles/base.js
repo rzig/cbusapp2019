@@ -8,6 +8,7 @@ export const colors = {
 export const fonts = {
     primary: "Lato-Medium",
     light: "Lato-Light",
+    bold: "Lato-Bold",
     calloutSize: 20,
     bodySize: 18,
     headerSize: 49

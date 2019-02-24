@@ -58,7 +58,7 @@ const createProgressNavigator = (routes, options) => {
 
 export default createProgressNavigator;
 
-const {height, width} = Dimensions.get('window');
+const {height} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
     container: {
@@ -79,18 +79,17 @@ const styles = StyleSheet.create({
         margin: 0
     },
     footer: {
-        display: "flex",
+        ...flexContainer,
         width: "100%",
         height: measures.barHeight,
-        flexDirection: "row",
-        justifyContent: "space-between",
-        backgroundColor: colors.light,
-        alignItems: "center"
+        padding: 0,
+        justifyContent: "space-between"
     },
     text: {
         ...bodyText,
         marginTop: -.25 * measures.margin,
         textAlign: "center",
-        padding: 0
+        padding: 0,
+        fontFamily: fonts.bold
     }
-})
+});

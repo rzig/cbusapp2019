@@ -6,8 +6,8 @@ export const colors = {
 }
 
 export const fonts = {
-    primary: "AvenirLTStd-Medium",
-    light: "AvenirLTStd-Light",
+    primary: "Lato-Medium",
+    light: "Lato-Light",
     calloutSize: 20,
     bodySize: 18,
     headerSize: 49

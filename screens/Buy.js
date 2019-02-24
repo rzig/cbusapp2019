@@ -9,12 +9,6 @@ import { measures, colors } from '../styles/base';
 import { captionText } from '../styles/mixins';
 
 class Buy extends Component {
-    static screenInfo = {
-        title: "Buy Solar",
-        left: "chevron-left",
-        onLeft: (nav) => {nav.navigate("Home")}
-    }
-
     state = {
         minSolarPanels: 10,
         maxSolarPanels: 43,
@@ -113,4 +107,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default withHeader(Buy);
+export default Buy;

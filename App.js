@@ -8,14 +8,17 @@
  */
 
 import React, {Component} from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { createSwitchNavigator, createAppContainer } from "react-navigation";
+import { createAppContainer } from "react-navigation";
 import Buy from './screens/Buy';
 import Plan from './screens/Plan';
+import Welcome from './screens/Welcome';
 import NavigationService from './NavigationService';
 import createProgressNavigator from './helpers/navigation/createProgressNavigator';
 
 const routes = {
+  Welcome: {
+    screen: Welcome
+  },
   Plan: {
     screen: Plan
   },
@@ -24,7 +27,7 @@ const routes = {
   }
 };
 
-const AppNavigator = createProgressNavigator(routes, {initialRouteName: "Plan"});
+const AppNavigator = createProgressNavigator(routes, {initialRouteName: "Welcome"});
 
 let AppContainer = createAppContainer(AppNavigator);
 

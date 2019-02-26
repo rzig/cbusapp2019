@@ -12,12 +12,16 @@ import { createAppContainer } from "react-navigation";
 import Buy from './screens/Buy';
 import Plan from './screens/Plan';
 import Welcome from './screens/Welcome';
+import Groups from './screens/Groups';
 import NavigationService from './NavigationService';
 import createProgressNavigator from './helpers/navigation/createProgressNavigator';
 
 const routes = {
   Welcome: {
     screen: Welcome
+  },
+  Groups: {
+    screen: Groups
   },
   Plan: {
     screen: Plan

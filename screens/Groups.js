@@ -1,22 +1,18 @@
 import React, { Component } from 'react';
-import { FlatList, StyleSheet, Text, TextInput, View } from 'react-native';
+import { StyleSheet, Text, TextInput, View, ScrollView } from 'react-native';
 import { bodyText } from '../styles/mixins';
 import Container from '../components/Container';
 import { colors, measures } from '../styles/base';
 import Group from '../components/Group';
 import Icon from 'react-native-vector-icons/AntDesign';
+import GroupModal from '../components/GroupModal';
+import groups from '../db/groups';
 
 class Groups extends Component {
     state = {
-        groupName: "",
-        groups: [
-            {name: "Group 1", joined: false},
-            {name: "Group 2", joined: false},
-            {name: "Group 3", joined: false},
-            {name: "Group 4", joined: false}
-        ],
         validCodes: ["asdf"],
-        groupsEnabled: true
+        groupsEnabled: true,
+        open: -1
     }
 
     handleCodeChg(newVal) {
@@ -26,6 +22,12 @@ class Groups extends Component {
             } else {
                 this.setState({groupsEnabled: true})
             }
+        });
+    }
+
+    onJoin(g) {
+        this.setState({open: -1}, () => {
+            this.props.navigation.navigate("Plan")
         });
     }
 
@@ -45,15 +47,27 @@ class Groups extends Component {
                 >
                     
                 </TextInput>
-                <FlatList
-                    data={this.state.groups}
-                    renderItem={item => <Group name={item.item.name} enabled={item.joined} enabled={this.state.groupsEnabled}/>}
-                    keyExtractor={i => i.name}
-                    style={styles.list}
-                    extraData={this.state.groupsEnabled}
-                    scrollEnabled={this.state.groupsEnabled}
-                />
+                <ScrollView style={styles.list} scrollEnabled={this.state.groupsEnabled}>
+                    {groups.map((g,i) => this.renderGroup(g, i))}
+                </ScrollView>
+                {groups.map((g, i) => this.renderModal(g, i))}
             </View>
+        )
+    }
+
+    renderGroup(g, i) {
+        return <Group name={g.name} enabled={this.state.groupsEnabled} key={g.name} onOpen={() => this.setState({open: i})}/>
+    }
+
+    renderModal(g, i) {
+        return (
+            <GroupModal
+                group={g}
+                open={this.state.open == i}
+                onJoin={() => this.onJoin(g)}
+                onClose={() => this.setState({open: -1})}
+                key={g.name}
+            />
         )
     }
 }
@@ -76,6 +90,8 @@ const styles = StyleSheet.create({
     list: {
         marginTop: measures.margin,
         paddingLeft: 2 * measures.margin,
-        paddingRight: 2 * measures.margin
+        paddingRight: 2 * measures.margin,
+        width: "100%",
+        height: "100%"
     }
 })

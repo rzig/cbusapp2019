@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Text, ImageBackground } from 'react-native';
+import { View, StyleSheet, Text, ImageBackground, TouchableOpacity } from 'react-native';
 import { colors, measures, fonts } from '../styles/base';
 import posed from 'react-native-pose';
 
@@ -8,18 +8,20 @@ const AnimatedBackground = posed(ImageBackground)({
     disabled: {opacity: 0.3}
 });
 
-const Group = ({name, joined, enabled, style}) => {
+const Group = ({name, enabled, style, onOpen}) => {
     return (
-        <View style={Object.assign({}, styles.view, style)}>
-            <AnimatedBackground
-              source={require("../assets/images/solarplaceholder1.jpg")}
-              style={Object.assign({}, styles.view, {opacity: 0.3})}
-              imageStyle={{borderRadius: measures.borderRadius}}
-              pose={enabled ? "enabled" : "disabled"}
-            >
-                <Text style={styles.text}>{name}</Text>
-            </AnimatedBackground>
-        </View>
+        <TouchableOpacity onPress={onOpen}>
+            <View style={Object.assign({}, styles.view, style)}>
+                <AnimatedBackground
+                source={require("../assets/images/solarplaceholder1.jpg")}
+                style={Object.assign({}, styles.view, {opacity: 0.3})}
+                imageStyle={{borderRadius: measures.borderRadius}}
+                pose={enabled ? "enabled" : "disabled"}
+                >
+                    <Text style={styles.text}>{name}</Text>
+                </AnimatedBackground>
+            </View>
+        </TouchableOpacity>
     )
 }
 

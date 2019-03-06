@@ -14,11 +14,13 @@ const createProgressNavigator = (routes, options) => {
         }
         
         render() {
-            const {navigation} = this.props;
+            const {navigation}  = this.props;
             const currentState  = navigation.state;
             const currentIndex  = currentState.index
             const currentScreen = currentState.routes[currentIndex];
             const screenCount   = currentState.routes.length - 1;
+            const isLastScreen  = currentIndex == screenCount;
+            const isFirstScreen = currentIndex == 0;
 
             let prevScreen;
             let nextScreen;
@@ -47,8 +49,19 @@ const createProgressNavigator = (routes, options) => {
                         <BaseNavigator navigation={navigation}/>
                     </View>
                     <View style={styles.footer}>
-                        <Button small inverse name="Back" onPress={() => navigation.dispatch(NavigationActions.navigate({routeName: prevScreen}))}/>
-                        <Button small name="Next" onPress={() => navigation.dispatch(NavigationActions.navigate({routeName: nextScreen}))}/>
+                        <Button
+                            small
+                            inverse
+                            name="Back"
+                            onPress={() => navigation.dispatch(NavigationActions.navigate({routeName: prevScreen}))}
+                            invisible={isFirstScreen}
+                        />
+                        <Button
+                            small
+                            name="Next"
+                            onPress={() => navigation.dispatch(NavigationActions.navigate({routeName: nextScreen}))}
+                            invisible={isLastScreen}
+                        />
                     </View>
                 </View>
             )

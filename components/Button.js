@@ -3,11 +3,11 @@ import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
 import {colors, fonts, measures} from '../styles/base';
 import { calloutText } from '../styles/mixins';
 
-const Button = ({name, onPress, small, inverse}) => {
+const Button = ({name, onPress, small, inverse, invisible}) => {
     return (
         <TouchableOpacity onPress={onPress}>
-            <View style={[styles.view, small && styles.smallView, inverse && styles.inverseView]} onPress={onPress}>
-                <Text style={[styles.text, small && styles.smallText, inverse && styles.inverseText]}>{name}</Text>
+            <View style={[styles.view, small && styles.smallView, inverse && styles.inverseView, invisible && styles.invisibleView]} onPress={onPress}>
+                <Text style={[styles.text, small && styles.smallText, inverse && styles.inverseText, invisible && styles.invisibleText]}>{name}</Text>
             </View>
         </TouchableOpacity>
     )
@@ -45,5 +45,12 @@ const styles = StyleSheet.create({
     },
     inverseText: {
         color: colors.dark
+    },
+    invisibleView: {
+        backgroundColor: colors.light,
+        borderColor: colors.light
+    },
+    invisibleText: {
+        color: colors.light
     }
 })

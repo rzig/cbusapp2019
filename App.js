@@ -13,6 +13,7 @@ import Buy from './screens/Buy';
 import Plan from './screens/Plan';
 import Welcome from './screens/Welcome';
 import Groups from './screens/Groups';
+import Checkout from './screens/Checkout';
 import NavigationService from './NavigationService';
 import createProgressNavigator from './helpers/navigation/createProgressNavigator';
 
@@ -28,6 +29,9 @@ const routes = {
   },
   Buy: {
     screen: Buy
+  },
+  Checkout: {
+    screen: Checkout
   }
 };
 

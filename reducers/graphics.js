@@ -8,7 +8,7 @@ function graphicsReducer(state = initialState, action) {
     if(action.type === SET_GRAPHICS) {
         return Object.assign({}, state, {[action.key]: action.value})
     }
-    return initialState;
+    return state;
 }
 
 export default graphicsReducer;

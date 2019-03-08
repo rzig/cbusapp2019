@@ -36,11 +36,8 @@ class Groups extends Component {
         this.props.setPreference("groupCode", newVal);
         if(this.state.validCodes.indexOf(newVal) !== -1) {
             this.props.setGraphics("grayGroups", true);
-            console.warn("aaa");
-            // this.props.setGraphics("grayGroups", true)
         } else {
-            console.warn("bbb");
-            // this.props.setGraphics("grayGroups", false)
+            this.props.setGraphics("grayGroups", false);
         }
     }
 
@@ -51,7 +48,7 @@ class Groups extends Component {
     }
 
     render() {
-        console.warn(this.props.displayGroups);
+        // console.warn(this.props.displayGroups);
         return (
             <View style={{display: "flex", flexDirection: "column"}}>
                 <Text style={styles.text}>
@@ -67,7 +64,7 @@ class Groups extends Component {
                 >
 
                 </TextInput>
-                <ScrollView style={styles.list} scrollEnabled={this.state.groupsEnabled}>
+                <ScrollView style={styles.list} scrollEnabled={this.props.displayGroups}>
                     {this.props.groups.map((g,i) => this.renderGroup(g, i))}
                 </ScrollView>
                 {this.props.groups.map((g, i) => this.renderModal(g, i))}
@@ -76,7 +73,7 @@ class Groups extends Component {
     }
 
     renderGroup(g, i) {
-        return <Group name={g.name} enabled={this.state.groupsEnabled} key={g.name} onOpen={() => this.setState({open: i})}/>
+        return <Group name={g.name} enabled={this.props.displayGroups} key={g.name} onOpen={() => this.setState({open: i})}/>
     }
 
     renderModal(g, i) {

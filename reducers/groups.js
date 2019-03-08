@@ -32,7 +32,7 @@ const initialState = {groups: [
 ]};
 
 function groupsReducer(state = initialState, action) {
-    return initialState;
+    return state;
 }
 
 export default groupsReducer;

@@ -8,17 +8,20 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import GroupModal from '../components/GroupModal';
 import {connect} from 'react-redux';
 import setPreference from '../actions/setPreference';
+import setGraphics from '../actions/setGraphics';
 
 const mapStateToProps = (state) => {
     return {
         groups: state.groups.groups,
-        groupCode: state.preferences.groupCode
+        groupCode: state.preferences.groupCode,
+        displayGroups: !state.graphics.grayGroups
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setPreference: (p, v) => dispatch(setPreference(p, v))
+        setPreference: (p, v) => dispatch(setPreference(p, v)),
+        setGraphics: (k, v) => dispatch(setGraphics(k, v))
     }
 }
 
@@ -32,9 +35,12 @@ class Groups extends Component {
     handleCodeChg(newVal) {
         this.props.setPreference("groupCode", newVal);
         if(this.state.validCodes.indexOf(newVal) !== -1) {
-            this.setState({groupsEnabled: false})
+            this.props.setGraphics("grayGroups", true);
+            console.warn("aaa");
+            // this.props.setGraphics("grayGroups", true)
         } else {
-            this.setState({groupsEnabled: true})
+            console.warn("bbb");
+            // this.props.setGraphics("grayGroups", false)
         }
     }
 
@@ -45,6 +51,7 @@ class Groups extends Component {
     }
 
     render() {
+        console.warn(this.props.displayGroups);
         return (
             <View style={{display: "flex", flexDirection: "column"}}>
                 <Text style={styles.text}>

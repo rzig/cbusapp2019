@@ -9,6 +9,8 @@
 
 import React, {Component} from 'react';
 import { createAppContainer } from "react-navigation";
+import { Provider } from 'react-redux';
+import store from './store/index';
 import Buy from './screens/Buy';
 import Plan from './screens/Plan';
 import Welcome from './screens/Welcome';
@@ -42,7 +44,9 @@ let AppContainer = createAppContainer(AppNavigator);
 class App extends Component {
   render() {
     return (
-      <AppContainer ref={navRef => NavigationService.setTopLevelNavigator(navRef)}/>
+      <Provider store={store}>
+        <AppContainer ref={navRef => NavigationService.setTopLevelNavigator(navRef)}/>
+      </Provider>
     )
   }
 }

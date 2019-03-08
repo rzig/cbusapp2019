@@ -6,7 +6,13 @@ import { colors, measures } from '../styles/base';
 import Group from '../components/Group';
 import Icon from 'react-native-vector-icons/AntDesign';
 import GroupModal from '../components/GroupModal';
-import groups from '../db/groups';
+import {connect} from 'react-redux';
+
+const mapStateToProps = (state) => {
+    return {
+        groups: state.groups.groups
+    }
+}
 
 class Groups extends Component {
     state = {
@@ -45,12 +51,12 @@ class Groups extends Component {
                     style={styles.input}
                     placeholder={"Group Name"}
                 >
-                    
+
                 </TextInput>
                 <ScrollView style={styles.list} scrollEnabled={this.state.groupsEnabled}>
-                    {groups.map((g,i) => this.renderGroup(g, i))}
+                    {this.props.groups.map((g,i) => this.renderGroup(g, i))}
                 </ScrollView>
-                {groups.map((g, i) => this.renderModal(g, i))}
+                {this.props.groups.map((g, i) => this.renderModal(g, i))}
             </View>
         )
     }
@@ -72,7 +78,7 @@ class Groups extends Component {
     }
 }
 
-export default Groups;
+export default connect(mapStateToProps)(Groups);
 
 const styles = StyleSheet.create({
     text: {

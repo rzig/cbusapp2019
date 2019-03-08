@@ -27,15 +27,18 @@ const mapDispatchToProps = (dispatch) => {
 
 class Groups extends Component {
     state = {
-        validCodes: ["asdf"],
+        validCodes: [],
         groupsEnabled: true,
-        open: -1
+        open: ""
     }
+
+    validCodes = []
 
     handleCodeChg(newVal) {
         this.props.setPreference("groupCode", newVal);
-        if(this.state.validCodes.indexOf(newVal) !== -1) {
+        if(this.validCodes.indexOf(newVal) !== -1) {
             this.props.setGraphics("grayGroups", true);
+            this.setState({open: newVal});
         } else {
             this.props.setGraphics("grayGroups", false);
         }
@@ -73,17 +76,39 @@ class Groups extends Component {
     }
 
     renderGroup(g, i) {
-        return <Group name={g.name} enabled={this.props.displayGroups} key={g.name} onOpen={() => this.setState({open: i})}/>
+        // Here, we do something pretty neat. We "lazy-load"
+        // a list of groups that can be entered. Given that the
+        // state w/ groups can update - even when not on this screen,
+        // it is most efficent to build the array of hidden group codes
+        // here. Additionally, it enforces separation of concerns - other
+        // screens do not need access to this list, and this list is not
+        // important to the overall application. Therefore, it should only exist
+        // in this component.
+        //
+        // Also - we *don't* want to use state for this. Everytime we call
+        // setState, it triggers a re-render. So, when we are calling renderGroup
+        // for each group, it will set the state, and trigger a re-render. As a result,
+        // using state to store validCodes will result in an infinite loop.
+        if(!g.private) {
+            return <Group name={g.name} enabled={this.props.displayGroups} key={g.code} onOpen={() => this.setState({open: i})}/>
+        } else {
+            this.validCodes.push(g.code);
+            return <View key={g.code}/>
+        }
     }
 
     renderModal(g, i) {
+        // We render the modal components for every group,
+        // even if the group is private. Then, when the user
+        // enters a hidden code, we can display the modal
+        // for that hidden group.
         return (
             <GroupModal
                 group={g}
-                open={this.state.open == i}
+                open={this.state.open == g.code}
                 onJoin={() => this.onJoin(g)}
                 onClose={() => this.setState({open: -1})}
-                key={g.name}
+                key={g.code}
             />
         )
     }

@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import Container from '../components/Container';
 import CircleButton from '../components/CircleButton';
-import increment from '../actions/increment';
 import { bodyText } from '../styles/mixins';
-import {connect} from 'react-redux';
 
 class Welcome extends Component {
     render() {

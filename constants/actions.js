@@ -1,1 +1,1 @@
-export const INCREMENT = "INCREMENT";
+export const SET_PREFERENCE = "SET_PREFERENCE";

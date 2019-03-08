@@ -7,10 +7,18 @@ import Group from '../components/Group';
 import Icon from 'react-native-vector-icons/AntDesign';
 import GroupModal from '../components/GroupModal';
 import {connect} from 'react-redux';
+import setPreference from '../actions/setPreference';
 
 const mapStateToProps = (state) => {
     return {
-        groups: state.groups.groups
+        groups: state.groups.groups,
+        groupCode: state.preferences.groupCode
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setPreference: (p, v) => dispatch(setPreference(p, v))
     }
 }
 
@@ -22,13 +30,12 @@ class Groups extends Component {
     }
 
     handleCodeChg(newVal) {
-        this.setState({groupName: newVal}, () => {
-            if(this.state.validCodes.indexOf(newVal) !== -1) {
-                this.setState({groupsEnabled: false})
-            } else {
-                this.setState({groupsEnabled: true})
-            }
-        });
+        this.props.setPreference("groupCode", newVal);
+        if(this.state.validCodes.indexOf(newVal) !== -1) {
+            this.setState({groupsEnabled: false})
+        } else {
+            this.setState({groupsEnabled: true})
+        }
     }
 
     onJoin(g) {
@@ -47,7 +54,7 @@ class Groups extends Component {
                 </Text>
                 <TextInput
                     onChangeText={n => this.handleCodeChg(n)}
-                    value={this.state.text}
+                    value={this.props.groupCode}
                     style={styles.input}
                     placeholder={"Group Name"}
                 >
@@ -78,7 +85,7 @@ class Groups extends Component {
     }
 }
 
-export default connect(mapStateToProps)(Groups);
+export default connect(mapStateToProps, mapDispatchToProps)(Groups);
 
 const styles = StyleSheet.create({
     text: {

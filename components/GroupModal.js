@@ -9,7 +9,7 @@ import CircleButton from './CircleButton';
 const GroupModal = ({group, open, onJoin, onClose}) => {
     return (
         <Modal isVisible={open}>
-            <Container style={{borderRadius: 16}}>
+            <Container style={{borderRadius: measures.borderRadius}}>
                 <ImageBackground
                   style={styles.headerImage}
                   imageStyle={styles.internalImage}
@@ -49,12 +49,18 @@ const styles = StyleSheet.create({
     headerImage: {
         width: "100%",
         height: 150,
+        borderRadius: measures.borderRadius,
         borderTopRightRadius: measures.borderRadius,
-        borderTopLeftRadius: measures.borderRadius
+        borderTopLeftRadius: measures.borderRadius,
+        borderBottomLeftRadius: 0,
+        borderBottomRightRadius: 0
     },
     internalImage: {
+        borderRadius: measures.borderRadius,
         borderTopRightRadius: measures.borderRadius,
-        borderTopLeftRadius: measures.borderRadius
+        borderTopLeftRadius: measures.borderRadius,
+        borderBottomLeftRadius: 0,
+        borderBottomRightRadius: 0
     },
     headerText: {
         color: colors.light,

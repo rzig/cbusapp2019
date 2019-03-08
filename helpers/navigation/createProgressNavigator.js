@@ -5,6 +5,7 @@ import Slider from 'react-native-slider';
 import { colors, measures, fonts } from '../../styles/base';
 import { bodyText, flexContainer } from '../../styles/mixins';
 import Button from '../../components/Button';
+import isX from '../../helpers/isX';
 
 const createProgressNavigator = (routes, options) => {
     const BaseNavigator = createSwitchNavigator(routes, options);
@@ -12,7 +13,7 @@ const createProgressNavigator = (routes, options) => {
         static router = {
             ...BaseNavigator.router
         }
-        
+
         render() {
             const {navigation}  = this.props;
             const currentState  = navigation.state;
@@ -24,7 +25,7 @@ const createProgressNavigator = (routes, options) => {
 
             let prevScreen;
             let nextScreen;
-            
+
             if(!(currentIndex + 1 > screenCount)) {
                 nextScreen = currentState.routes[currentIndex + 1].routeName;
             }
@@ -78,7 +79,8 @@ const styles = StyleSheet.create({
         ...flexContainer,
         flexDirection: "column",
         width: "100%",
-        height: height
+        height: height,
+        ...isX({paddingTop: 22})
     },
     content: {
         height: height - (2.5 * measures.barHeight),

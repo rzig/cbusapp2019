@@ -1,45 +1,22 @@
-import panels from "../db/panels";
+import { LOAD_GROUPS } from "../constants/actions";
 
-const initialState = {groups: [
-    {
-        name: "Columbus Nerds",
-        oneliner: "Solar for Columbus.",
-        about: "We are geeks in CBUS that want to advance solar. We buy once a year.",
-        image: "https://blog.ring.com/wp-content/uploads/2016/05/shutterstock_161232668.jpg",
-        panel: panels[0],
-        code: "abcde",
-        private: true
-    },
-    {
-        name: "Columbus Nerds 1",
-        oneliner: "Solar for Columbus1.",
-        about: "We are geeks in CBUS that want to advance solar. We buy once a year.",
-        image: "https://blog.ring.com/wp-content/uploads/2016/05/shutterstock_161232668.jpg",
-        panel: panels[0],
-        code: "fghij",
-        private: false
-    },
-    {
-        name: "Columbus Nerds 2",
-        oneliner: "Solar for Columbus2.",
-        about: "We are geeks in CBUS that want to advance solar. We buy once a year.",
-        image: "https://blog.ring.com/wp-content/uploads/2016/05/shutterstock_161232668.jpg",
-        panel: panels[0],
-        code: "klmno",
-        private: false
-    },
-    {
-        name: "Columbus Nerds 3",
-        oneliner: "Solar for Columbus3.",
-        about: "We are geeks in CBUS that want to advance solar. We buy once a year.",
-        image: "https://blog.ring.com/wp-content/uploads/2016/05/shutterstock_161232668.jpg",
-        panel: panels[0],
-        code: "pqrst",
-        private: false
-    },
-]};
+const initialState = {
+    groups: [],
+    loaded: false,
+    error: false,
+};
 
 function groupsReducer(state = initialState, action) {
+    if(action.type == LOAD_GROUPS) {
+        let newstate = {
+            loaded: true,
+            success: action.success
+        }
+        if(action.success) {
+            newstate.groups = action.groups;
+        }
+        return Object.assign({}, state, newstate);
+    }
     return state;
 }
 

@@ -1,31 +1,37 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, TextInput, View, ScrollView } from 'react-native';
 import { bodyText } from '../styles/mixins';
-import Container from '../components/Container';
 import { colors, measures } from '../styles/base';
 import Group from '../components/Group';
-import Icon from 'react-native-vector-icons/AntDesign';
 import GroupModal from '../components/GroupModal';
 import {connect} from 'react-redux';
 import setPreference from '../actions/setPreference';
 import setGraphics from '../actions/setGraphics';
+import loadGroups from '../actions/loadGroups';
+import Loading from './Loading';
 
 const mapStateToProps = (state) => {
     return {
         groups: state.groups.groups,
         groupCode: state.preferences.groupCode,
-        displayGroups: !state.graphics.grayGroups
+        displayGroups: !state.graphics.grayGroups,
+        loading: !state.groups.loaded
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
         setPreference: (p, v) => dispatch(setPreference(p, v)),
-        setGraphics: (k, v) => dispatch(setGraphics(k, v))
+        setGraphics: (k, v) => dispatch(setGraphics(k, v)),
+        loadGroups: () => dispatch(loadGroups())
     }
 }
 
 class Groups extends Component {
+    componentWillMount() {
+        this.props.loadGroups();
+    }
+
     state = {
         groupsEnabled: true,
         open: ""
@@ -51,6 +57,9 @@ class Groups extends Component {
     }
 
     render() {
+        if(this.props.loading) {
+            return <Loading/>
+        }
         return (
             <View style={{display: "flex", flexDirection: "column"}}>
                 <Text style={styles.text}>
@@ -135,4 +144,4 @@ const styles = StyleSheet.create({
         width: "100%",
         height: "100%"
     }
-})
+});

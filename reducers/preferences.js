@@ -1,7 +1,8 @@
 import {SET_PREFERENCE} from '../constants/actions';
 
 const initialState = {
-    groupCode: ""
+    groupCode: "",
+    group: {panel: {}}
 }
 
 function preferencesReducer(state = initialState, action) {

@@ -27,7 +27,6 @@ const mapDispatchToProps = (dispatch) => {
 
 class Groups extends Component {
     state = {
-        validCodes: [],
         groupsEnabled: true,
         open: ""
     }
@@ -45,13 +44,13 @@ class Groups extends Component {
     }
 
     onJoin(g) {
-        this.setState({open: -1}, () => {
-            this.props.navigation.navigate("Plan")
+        this.setState({open: ""}, () => {
+            this.props.setPreference("group", g);
+            this.props.navigation.navigate("Plan");
         });
     }
 
     render() {
-        // console.warn(this.props.displayGroups);
         return (
             <View style={{display: "flex", flexDirection: "column"}}>
                 <Text style={styles.text}>
@@ -90,7 +89,7 @@ class Groups extends Component {
         // for each group, it will set the state, and trigger a re-render. As a result,
         // using state to store validCodes will result in an infinite loop.
         if(!g.private) {
-            return <Group name={g.name} enabled={this.props.displayGroups} key={g.code} onOpen={() => this.setState({open: i})}/>
+            return <Group name={g.name} enabled={this.props.displayGroups} key={g.code} onOpen={() => this.setState({open: g.code})}/>
         } else {
             this.validCodes.push(g.code);
             return <View key={g.code}/>

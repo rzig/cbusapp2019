@@ -1,5 +1,6 @@
 import {LOAD_GROUPS} from '../constants/actions';
 import { AsyncStorage } from 'react-native';
+import parseCreds from '../creds/parse';
 const Parse = require('parse/react-native');
 
 let loadedPanels = {}
@@ -66,8 +67,8 @@ function loadGroups() {
         Parse.setAsyncStorage(AsyncStorage);
         Parse.serverURL = 'https://parseapi.back4app.com'; // This is your Server URL
         Parse.initialize(
-            'x0r9HCa2OS2nMER9RDCBJenv5uvRSxPvvsuHOiHR', // This is your Application ID
-            'isrUEIdWYM5j4KAVZFdUgGDhbOlZEv80jNtjubeU' // This is your Javascript key
+            parseCreds.appid, // This is your Application ID
+            parseCreds.key // This is your Javascript key
         );
         const MyCustomClass = Parse.Object.extend('Group');
         const query = new Parse.Query(MyCustomClass);

@@ -2,6 +2,8 @@ import {LOAD_GROUPS} from '../constants/actions';
 import { AsyncStorage } from 'react-native';
 const Parse = require('parse/react-native');
 
+let loadedPanels = {}
+
 /**
  * Gets the panel associated with the group from
  * parse. Uses the panels variable (outside the fn)
@@ -12,15 +14,24 @@ const Parse = require('parse/react-native');
  */
 function loadPanel(objectid) {
     return new Promise((resolve, reject) => {
+        if(Object.keys(loadedPanels).indexOf(objectid) !== -1) {
+            // This panel has already been loaded, no need
+            // to fetch it again.
+            resolve(panels[objectid]);
+        }
         const MyCustomClass = Parse.Object.extend('Panel');
         const query = new Parse.Query(MyCustomClass);
         query.get(objectid).then(panel => {
-            resolve({
+            // Convert to JSON because parse
+            // objects are a pain to use in other code
+            let jsonpanel = {
                 name:  panel.get("name"),
                 image: panel.get("image"),
                 about: panel.get("about"),
                 price: panel.get("price")
-            });
+            };
+            loadedPanels[objectid] = jsonpanel;
+            resolve(jsonpanel);
         }).catch(error => {
             console.warn(error);
             reject(error);
@@ -72,7 +83,7 @@ function loadGroups() {
                 dispatch({type: LOAD_GROUPS, groups: jsonResults, success: true});
             })  
         }, (error) => {
-            dispatch({type: LOAD_GROUPS, success});
+            dispatch({type: LOAD_GROUPS, success: false});
         });
     }
 }

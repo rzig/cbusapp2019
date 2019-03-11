@@ -8,14 +8,15 @@ import {connect} from 'react-redux';
 import setPreference from '../actions/setPreference';
 import setGraphics from '../actions/setGraphics';
 import loadGroups from '../actions/loadGroups';
-import Loading from './Loading';
+import InfoDisplay from '../components/InfoDisplay';
 
 const mapStateToProps = (state) => {
     return {
         groups: state.groups.groups,
         groupCode: state.preferences.groupCode,
         displayGroups: !state.graphics.grayGroups,
-        loading: !state.groups.loaded
+        loading: !state.groups.loaded,
+        error: state.groups.error
     }
 }
 
@@ -58,7 +59,10 @@ class Groups extends Component {
 
     render() {
         if(this.props.loading) {
-            return <Loading/>
+            return <InfoDisplay message="Loading..."/>
+        }
+        if(this.props.error) {
+            return <ErrorDisplay message="Error loading data. Please try again later."/>
         }
         return (
             <View style={{display: "flex", flexDirection: "column"}}>

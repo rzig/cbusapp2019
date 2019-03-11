@@ -3,17 +3,17 @@ import { Text, StyleSheet } from 'react-native';
 import Container from '../components/Container';
 import { bodyText } from '../styles/mixins';
 
-class Loading extends Component {
+class InfoDisplay extends Component {
     render() {
         return (
-            <Container>
-                <Text>Loading...</Text>
+            <Container style={styles.container}>
+                <Text style={styles.text}>{this.props.message}</Text>
             </Container>
         )
     }
 }
 
-export default Loading;
+export default InfoDisplay;
 
 const styles = StyleSheet.create({
     container: {

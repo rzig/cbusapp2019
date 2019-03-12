@@ -3,6 +3,13 @@ import { View } from 'react-native';
 import pressable from '../helpers/pressable';
 import Icon from 'react-native-vector-icons/AntDesign'
 
+/**
+ * Given a size (width and height), returns a view containing a centered icon
+ * If no icon is provided, it will return an empty view.
+ * @param {string} name  - the name of the AntDesign icon to display
+ * @param {number} size  - the width and height of the icon
+ * @param {string} color - the color of the icon 
+ */
 const OptionalIcon = ({name, size, color}) => {
     if(name) {
         return (
@@ -17,6 +24,14 @@ const OptionalIcon = ({name, size, color}) => {
     }
 }
 
+/**
+ * Returns a circular button
+ * @param {string}   color     - the color of the button
+ * @param {number}   size      - the width and height of the button in pixels
+ * @param {function} onPress   - function called when the button is presses
+ * @param {string}   icon      - name of an AntDesign icon to be placed inside
+ * @param {string}   iconColor - color of the icon
+ */
 const CircleButton = ({color, size, onPress, icon, iconColor}) => {
     return (
         <View style={{borderRadius: size, backgroundColor: color, width: size, height: size}} onPress={onPress}>

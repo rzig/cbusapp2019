@@ -1,13 +1,12 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
-import withHeader from '../helpers/withHeader';
-import Button from '../components/Button';
+import {Text, StyleSheet} from 'react-native';
 import ValueSlider from '../components/ValueSlider';
 import InfoCard from '../components/InfoCard';
 import Container from '../components/Container';
 import { measures, colors } from '../styles/base';
 import { captionText, bodyText } from '../styles/mixins';
 import { connect } from 'react-redux';
+import InfoDisplay from '../components/InfoDisplay';
 
 const mapStateToProps = (state) => {
     return {
@@ -15,7 +14,6 @@ const mapStateToProps = (state) => {
         perSolarPanelCost: state.preferences.group.panel.price
     }
 }
-
 
 class Buy extends Component {
     // we don't put this in redux b/c if the user
@@ -29,20 +27,6 @@ class Buy extends Component {
         kwhPerPanel: 1,
         kwhUsed: 900,
         excessToSell: 0
-    }
-
-    toggleVisible() {
-        this.setState({visible: !this.state.visible});
-    }
-
-    componentDidMount() {
-        this.setState({cards: "in"})
-    }
-
-    navigate(route) {
-        // we "slide out"
-        this.toggleVisible();
-        this.props.navigation.pop();
     }
 
     render() {
@@ -90,9 +74,7 @@ class Buy extends Component {
             )
         } else {
             return (
-                <Container>
-                    <Text>Please join a group first.</Text>
-                </Container>
+                <InfoDisplay message="Please join a group first."/>
             )
         }
     }

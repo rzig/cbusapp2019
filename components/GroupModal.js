@@ -6,6 +6,13 @@ import {colors, fonts, measures} from '../styles/base';
 import { bodyText, flexContainer } from '../styles/mixins';
 import CircleButton from './CircleButton';
 
+/**
+ * A modal dialog that displays details about a group
+ * @param {object}   group   - the group to be displayed
+ * @param {boolean}  open    - whether the modal is open
+ * @param {function} onJoin  - what to do when the user selects the check mark
+ * @param {function} onClose - what to do when the user dismisses the modal
+ */
 const GroupModal = ({group, open, onJoin, onClose}) => {
     return (
         <Modal isVisible={open}>
@@ -13,7 +20,7 @@ const GroupModal = ({group, open, onJoin, onClose}) => {
                 <ImageBackground
                   style={styles.headerImage}
                   imageStyle={styles.internalImage}
-                  source={{uri: "https://blog.ring.com/wp-content/uploads/2016/05/shutterstock_161232668.jpg"}}
+                  source={{uri: group.image}}
                 >
                     <Text style={styles.headerText}>{group.name}</Text>
                 </ImageBackground>

@@ -7,6 +7,17 @@ import { bodyText, flexContainer } from '../../styles/mixins';
 import Button from '../../components/Button';
 import isX from '../../helpers/isX';
 
+/**
+ * Extends react-navigation's SwitchNavigator. Includes
+ * a progress slider at the top (just disabled, visual only),
+ * and buttons for navigation at the bottom. Currently does
+ * not support animated screen transitions due to limitations of
+ * SwitchNavigator. These transitions are theoretically possible
+ * if you wrap ALL your screens in a HOC that reads navigation
+ * state, but that's not very DRY :/
+ * @param {*} routes  - routes avilable
+ * @param {*} options - other options
+ */
 const createProgressNavigator = (routes, options) => {
     const BaseNavigator = createSwitchNavigator(routes, options);
     return class ProgressNavigator extends Component {

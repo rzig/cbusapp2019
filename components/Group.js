@@ -8,12 +8,20 @@ const AnimatedBackground = posed(ImageBackground)({
     disabled: {opacity: 0.3}
 });
 
-const Group = ({name, enabled, style, onOpen}) => {
+/**
+ * A box that displays a group's title on top of its background image
+ * @param {string}   name    - name of the group
+ * @param {boolean}  enabled - whether the image should be grayed out
+ * @param {object}   style   - any additional style to add to the view container
+ * @param {function} onOpen  - what to do when it is tapped
+ * @param {string}   image   - link to the group's image
+ */
+const Group = ({name, enabled, style, onOpen, image}) => {
     return (
         <TouchableOpacity onPress={onOpen}>
-            <View style={Object.assign({}, styles.view, style)}>
+            <View style={[styles.view, style]}>
                 <AnimatedBackground
-                source={require("../assets/images/solarplaceholder1.jpg")}
+                source={{uri: image}}
                 style={Object.assign({}, styles.view, {opacity: 0.3})}
                 imageStyle={{borderRadius: measures.borderRadius}}
                 pose={enabled ? "enabled" : "disabled"}

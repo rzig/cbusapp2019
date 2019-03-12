@@ -3,6 +3,16 @@ import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
 import {colors, fonts, measures} from '../styles/base';
 import { calloutText } from '../styles/mixins';
 
+/**
+ * Returns a button with rounded corners. Defaults to having a dark
+ * background with light text.
+ * @param {string}   name      - the content to display in the button (ie next, back, etc)
+ * @param {function} onPress   - function to call when the button is pressed
+ * @param {boolean}  small     - whether to make the button "small" or not. Small buttons are 1/2 size.
+ * @param {boolean}  inverse   - whether the button should be inverted (light background, dark text)
+ * @param {boolean}  invisible - whether the button should be displayed or not. When activated,
+ *                               the button will still render, but will have white text & background
+ */
 const Button = ({name, onPress, small, inverse, invisible}) => {
     return (
         <TouchableOpacity onPress={onPress}>

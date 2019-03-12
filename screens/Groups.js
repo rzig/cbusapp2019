@@ -88,21 +88,29 @@ class Groups extends Component {
     }
 
     renderGroup(g, i) {
-        // Here, we do something pretty neat. We "lazy-load"
+        // Here, we do something pretty interesting. We "lazy-load"
         // a list of groups that can be entered. Given that the
         // state w/ groups can update - even when not on this screen,
         // it is most efficent to build the array of hidden group codes
         // here. Additionally, it enforces separation of concerns - other
         // screens do not need access to this list, and this list is not
-        // important to the overall application. Therefore, it should only exist
-        // in this component.
+        // important to the overall application. So, it should only exist
+        // in this component - not redux.
         //
-        // Also - we *don't* want to use state for this. Everytime we call
+        // Also - we *don't* want to use component state for this. Everytime we call
         // setState, it triggers a re-render. So, when we are calling renderGroup
-        // for each group, it will set the state, and trigger a re-render. As a result,
+        // for each group, it will set the state each time, and trigger a re-render. As a result,
         // using state to store validCodes will result in an infinite loop.
         if(!g.private) {
-            return <Group name={g.name} enabled={this.props.displayGroups} key={g.code} onOpen={() => this.setState({open: g.code})}/>
+            return (
+                <Group
+                    name={g.name}
+                    enabled={this.props.displayGroups}
+                    key={g.code}
+                    onOpen={() => this.setState({open: g.code})}
+                    image={g.image}
+                />
+            )
         } else {
             this.validCodes.push(g.code);
             return <View key={g.code}/>

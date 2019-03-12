@@ -3,6 +3,11 @@ import { Text, StyleSheet } from 'react-native';
 import Container from '../components/Container';
 import { bodyText } from '../styles/mixins';
 
+/**
+ * Fullscreen component intended to be used while
+ * waiting for data, displaying errors, etc
+ * @param {string} message - message to display
+ */
 class InfoDisplay extends Component {
     render() {
         return (

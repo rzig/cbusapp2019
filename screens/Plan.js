@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { Text, StyleSheet, View, TouchableOpacity } from 'react-native';
 import { RNCamera } from 'react-native-camera';
-import Container from '../components/Container';
 import CircleButton from '../components/CircleButton';
-import withHeader from '../helpers/withHeader';
 import { colors, measures } from '../styles/base';
 import { bodyText, flexContainer } from '../styles/mixins';
 

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { ScrollView, Text, StyleSheet, Dimensions, KeyboardAvoidingView } from 'react-native';
-import Container from '../components/Container';
 import { bodyText } from '../styles/mixins';
 import Input from '../components/Input';
 import { measures } from '../styles/base';

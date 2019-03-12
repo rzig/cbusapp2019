@@ -54,7 +54,7 @@ const createProgressNavigator = (routes, options) => {
                             maximumValue={screenCount}
                             animateTransitions={true}
                         />
-                        <Text style={styles.text}>
+                        <Text style={styles.text} accessibilityRole="header">
                             {getString(currentScreen.routeName, "header")}
                         </Text>
                     </View>

@@ -32,9 +32,14 @@ const OptionalIcon = ({name, size, color}) => {
  * @param {string}   icon      - name of an AntDesign icon to be placed inside
  * @param {string}   iconColor - color of the icon
  */
-const CircleButton = ({color, size, onPress, icon, iconColor}) => {
+const CircleButton = ({color, size, onPress, icon, iconColor, name, description}) => {
     return (
-        <View style={{borderRadius: size, backgroundColor: color, width: size, height: size}} onPress={onPress}>
+        <View
+            style={{borderRadius: size, backgroundColor: color, width: size, height: size}}
+            onPress={onPress}
+            accessibilityLabel={name}
+            accessibilityHint={description}
+        >
             <OptionalIcon name={icon} size={.45 * size} color={iconColor}/>
         </View>
     )

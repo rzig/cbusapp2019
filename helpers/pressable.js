@@ -47,13 +47,23 @@ const pressable = (WrappedComponent) => {
                 els = WrappedComponent(this.props);
             }
             const parentStyle   = {width: els.props.style.width, height: els.props.style.height};
+            const a11y          = {
+                accessibilityLabel: els.props.accessibilityLabel,
+                accessibilityHint:  els.props.accessibilityHint,
+                accessibilityRole:  "button"
+            }
             const newChildStyle = Object.assign({}, els.props.style, {width: "100%", height: "100%"});            
             const newChildProps = Object.assign({}, els.props, {style:newChildStyle})
             const newEls = React.cloneElement(els, newChildProps, els.props.children);
             const pressFn = els.props.onPress || emptyFn;
             return (
                 <View style={parentStyle}>
-                    <TouchableWithoutFeedback onPressIn={() => this.toggle()} onPressOut={() => {this.toggle()}} onPress={() => pressFn()}>
+                    <TouchableWithoutFeedback
+                        onPressIn={() => this.toggle()}
+                        onPressOut={() => {this.toggle()}}
+                        onPress={() => pressFn()}
+                        {...a11y}
+                    >
                         <PoseBox pose={this.state.shrunk ? "small" : "big"}>
                             {newEls}
                         </PoseBox>

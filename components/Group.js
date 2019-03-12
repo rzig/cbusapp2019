@@ -18,7 +18,12 @@ const AnimatedBackground = posed(ImageBackground)({
  */
 const Group = ({name, enabled, style, onOpen, image}) => {
     return (
-        <TouchableOpacity onPress={onOpen}>
+        <TouchableOpacity 
+            onPress={onOpen}
+            accessibilityLabel={name}
+            accessibilityHint="Learn more about the group."
+            accessibilityRole="imagebutton"
+        >
             <View style={[styles.view, style]}>
                 <AnimatedBackground
                 source={{uri: image}}

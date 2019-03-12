@@ -6,6 +6,7 @@ import { colors, measures, fonts } from '../../styles/base';
 import { bodyText, flexContainer } from '../../styles/mixins';
 import Button from '../../components/Button';
 import isX from '../../helpers/isX';
+import getString from '../getString';
 
 /**
  * Extends react-navigation's SwitchNavigator. Includes
@@ -54,7 +55,7 @@ const createProgressNavigator = (routes, options) => {
                             animateTransitions={true}
                         />
                         <Text style={styles.text}>
-                            {currentScreen.routeName}
+                            {getString(currentScreen.routeName, "header")}
                         </Text>
                     </View>
                     <View style={styles.content}>
@@ -64,15 +65,17 @@ const createProgressNavigator = (routes, options) => {
                         <Button
                             small
                             inverse
-                            name="Back"
+                            name={getString("Navigator", "back")}
                             onPress={() => navigation.dispatch(NavigationActions.navigate({routeName: prevScreen}))}
                             invisible={isFirstScreen}
+                            description={getString("Navigator", "backDescription")}
                         />
                         <Button
                             small
-                            name="Next"
+                            name={getString("Navigator", "next")}
                             onPress={() => navigation.dispatch(NavigationActions.navigate({routeName: nextScreen}))}
                             invisible={isLastScreen}
+                            description={getString("Navigator", "nextDescription")}
                         />
                     </View>
                 </View>

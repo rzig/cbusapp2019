@@ -4,27 +4,32 @@ import { RNCamera } from 'react-native-camera';
 import CircleButton from '../components/CircleButton';
 import { colors, measures } from '../styles/base';
 import { bodyText, flexContainer } from '../styles/mixins';
+import getString from '../helpers/getString';
 
 class Plan extends Component {
-
     render() {
         return (
             <View>
                 <Text style={styles.text}>
-                    Take between twenty and forty pictures of your home, from multiple angles.
-                    Once you're done, press next.
+                    {getString("Plan", "body")}
                 </Text>
                 <RNCamera
                     ref={ref => this.camera = ref}
                     style={styles.cam}
                     type={RNCamera.Constants.Type.back}
                     flashMode={RNCamera.Constants.FlashMode.off}
-                    permissionDialogTitle="Permission to use camera"
-                    permissionDialogMessage="Please say yes"
+                    permissionDialogTitle={getString("Plan", "permissionTitle")}
+                    permissionDialogMessage={getString("Plan", "permissionMessage")}
                     captureAudio={false}
                 >
                     <View style={styles.bottomBar}>
-                        <CircleButton size={50} color={colors.dark} onPress={() => this.capture()}/>
+                        <CircleButton
+                            size={50}
+                            color={colors.dark}
+                            onPress={() => this.capture()}
+                            name={getString("Plan", "buttonName")}
+                            description={getString("Plan", "buttonDescription")}
+                        />
                     </View>
                 </RNCamera>
             </View>

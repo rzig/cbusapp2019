@@ -7,6 +7,7 @@ import { measures, colors } from '../styles/base';
 import { captionText, bodyText } from '../styles/mixins';
 import { connect } from 'react-redux';
 import InfoDisplay from '../components/InfoDisplay';
+import getString from '../helpers/getString';
 
 const mapStateToProps = (state) => {
     return {
@@ -37,34 +38,34 @@ class Buy extends Component {
             return (
                 <Container>
                     <InfoCard
-                        left={{header: numberWithCommas(Math.round(finalCost)), subheader: "upfront cost"}}
-                        right={{header: "1000", subheader: "saved per year"}}
+                        left={{header: numberWithCommas(Math.round(finalCost)), subheader: getString("Buy", "upfront")}}
+                        right={{header: "1000", subheader: getString("Buy", "saved")}}
                     />
                     <ValueSlider
-                        name="Number of solar panels"
+                        name={getString("Buy", "numberOf")}
                         min={this.state.minSolarPanels}
                         max={this.state.maxSolarPanels}
                         step={1}
-                        subtitle={"@" + this.props.perSolarPanelCost + " each"}
+                        subtitle={"@" + this.props.perSolarPanelCost + getString("Buy", "each")}
                         value={this.state.solarPanels}
                         onChange={(n) => this.setState({solarPanels: n})}
                     />
                     <ValueSlider
-                        name="Your energy usage"
+                        name={getString("Buy", "energyUse")}
                         min={0}
                         max={2000}
                         step={10}
-                        subtitle={"per month"}
+                        subtitle={getString("Buy", "perMonth")}
                         value={this.state.kwhUsed}
                         units="kWh"
                         onChange={(n) => this.setState({kwhUsed: n})}
                     />
                     <ValueSlider
-                        name="Solar energy to sell upfront"
+                        name={getString("Buy", "solarToSell")}
                         min={0}
                         max={60}
                         step={1}
-                        subtitle={"per month"}
+                        subtitle={getString("Buy", "perMonth")}
                         value={this.state.excessToSell}
                         units="%"
                         onChange={(n) => this.setState({excessToSell: n})}
@@ -74,14 +75,10 @@ class Buy extends Component {
             )
         } else {
             return (
-                <InfoDisplay message="Please join a group first."/>
+                <InfoDisplay message={getString("Buy", "warning")}/>
             )
         }
     }
-}
-
-function newFunction(state) {
-    return state.preferences.group !== {};
 }
 
 function numberWithCommas(x) {

@@ -2,15 +2,14 @@ import React, { Component } from 'react';
 import { Text, StyleSheet } from 'react-native';
 import Container from '../components/Container';
 import { bodyText } from '../styles/mixins';
+import getString from '../helpers/getString';
 
 class Welcome extends Component {
     render() {
         return (
             <Container>
                 <Text style={styles.text}>
-                    Welcome to Group Solar! We'll walk you through the whole
-                    process - from planning to buying to installing. When you're
-                    ready to start, press Next!
+                    {getString("Welcome", "body")}
                 </Text>
             </Container>
         )

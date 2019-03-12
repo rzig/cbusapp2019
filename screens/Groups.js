@@ -9,6 +9,7 @@ import setPreference from '../actions/setPreference';
 import setGraphics from '../actions/setGraphics';
 import loadGroups from '../actions/loadGroups';
 import InfoDisplay from '../components/InfoDisplay';
+import getString from '../helpers/getString';
 
 const mapStateToProps = (state) => {
     return {
@@ -59,25 +60,22 @@ class Groups extends Component {
 
     render() {
         if(this.props.loading) {
-            return <InfoDisplay message="Loading..."/>
+            return <InfoDisplay message={getString("Groups", "loading")}/>
         }
         if(this.props.error) {
-            return <ErrorDisplay message="Error loading data. Please try again later."/>
+            return <ErrorDisplay message={getString("Groups", "error")}/>
         }
         return (
             <View style={{display: "flex", flexDirection: "column"}}>
                 <Text style={styles.text}>
-                    A group is who you'll buy solar with. If you've received
-                    a group code in the mail, you can enter it below. If you haven't,
-                    feel free to browse groups below.
+                    {getString("Groups", "body")}
                 </Text>
                 <TextInput
                     onChangeText={n => this.handleCodeChg(n)}
                     value={this.props.groupCode}
                     style={styles.input}
-                    placeholder={"Group Name"}
+                    placeholder={getString("Groups", "placeholder")}
                 >
-
                 </TextInput>
                 <ScrollView style={styles.list} scrollEnabled={this.props.displayGroups}>
                     {this.props.groups.map((g,i) => this.renderGroup(g, i))}

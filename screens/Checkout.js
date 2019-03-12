@@ -3,6 +3,7 @@ import { ScrollView, Text, StyleSheet, Dimensions, KeyboardAvoidingView } from '
 import { bodyText } from '../styles/mixins';
 import Input from '../components/Input';
 import { measures } from '../styles/base';
+import getString from '../helpers/getString';
 
 class Checkout extends Component {
     state = {
@@ -23,50 +24,50 @@ class Checkout extends Component {
                         number
                         value={this.state.card}
                         onChange={(v) => this.setState({card: v})}
-                        label="Card #"
+                        label={getString("Checkout", "card")}
                         type="creditCardNumber"
                     />
                     <Input
                         number
                         value={this.state.expireYear}
                         onChange={v => this.setState({expireYear: v})}
-                        label="Expiriration Year (YYYY)"
+                        label={getString("Checkout", "expirationYear")}
                     />
                     <Input
                         number
                         value={this.state.expireMonth}
                         onChange={v => this.setState({expireMonth: v})}
-                        label="Expiriration Month (MM)"
+                        label={getString("Checkout", "expirationMonth")}
                     />
                     <Input
                         value={this.state.addressOne}
                         onChange={v => this.setState({addressOne: v})}
-                        label="Address Line One"
+                        label={getString("Checkout", "addressOne")}
                         type="streetAddressLine1"
                     />
                     <Input
                         value={this.state.addressTwo}
                         onChange={v => this.setState({addressTwo: v})}
-                        label="Address Line Two"
+                        label={getString("Checkout", "addressTwo")}
                         type="streetAddressLine2"
                     />
                     <Input
                         value={this.state.city}
                         onChange={v => this.setState({city: v})}
-                        label="City"
+                        label={getString("Checkout", "city")}
                         type="addressCity"
                     />
                     <Input
                         value={this.state.state}
                         onChange={v => this.setState({state: v})}
-                        label="State"
+                        label={getString("Checkout", "state")}
                         type="addressState"
                     />
                     <Input
                         number
                         value={this.state.zip}
                         onChange={v => this.setState({zip: v})}
-                        label="Zipcode"
+                        label={getString("Checkout", "zipcode")}
                     />
                 </ScrollView>
             </KeyboardAvoidingView>

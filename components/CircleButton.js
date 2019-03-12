@@ -26,11 +26,13 @@ const OptionalIcon = ({name, size, color}) => {
 
 /**
  * Returns a circular button
- * @param {string}   color     - the color of the button
- * @param {number}   size      - the width and height of the button in pixels
- * @param {function} onPress   - function called when the button is presses
- * @param {string}   icon      - name of an AntDesign icon to be placed inside
- * @param {string}   iconColor - color of the icon
+ * @param {string}   color       - the color of the button
+ * @param {number}   size        - the width and height of the button in pixels
+ * @param {function} onPress     - function called when the button is presses
+ * @param {string}   icon        - name of an AntDesign icon to be placed inside
+ * @param {string}   iconColor   - color of the icon
+ * @param {string}   name        - name of the button, used for accessibility
+ * @param {string}   description - what happens when the button is pressed, used for accessibility
  */
 const CircleButton = ({color, size, onPress, icon, iconColor, name, description}) => {
     return (

@@ -29,7 +29,8 @@ function loadPanel(objectid) {
                 name:  panel.get("name"),
                 image: panel.get("image"),
                 about: panel.get("about"),
-                price: panel.get("price")
+                price: panel.get("price"),
+                wattsPerSf: panel.get("wattsPerSf")
             };
             loadedPanels[objectid] = jsonpanel;
             resolve(jsonpanel);

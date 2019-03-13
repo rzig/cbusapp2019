@@ -12,7 +12,8 @@ import getString from '../helpers/getString';
 const mapStateToProps = (state) => {
     return {
         shouldDisplay: !(Object.keys(state.preferences.group).indexOf("code") == -1),
-        perSolarPanelCost: state.preferences.group.panel.price
+        perSolarPanelCost: state.preferences.group.panel.price,
+        wattsPerSf: state.preferences.group.panel.wattsPerSf
     }
 }
 
@@ -24,22 +25,26 @@ class Buy extends Component {
         minSolarPanels: 10,
         maxSolarPanels: 43,
         solarPanels:    13,
-        perSolarPanelCost: 254,
-        kwhPerPanel: 1,
         kwhUsed: 900,
-        excessToSell: 0
+        excessToSell: 0,
+        centsPerKWH: 13
     }
 
     render() {
         if(this.props.shouldDisplay) {
             const rawCost = this.props.perSolarPanelCost * this.state.solarPanels;
             const percentageSold = this.state.excessToSell / 100;
-            const finalCost = rawCost - (percentageSold * rawCost);
+            const wpp = (this.props.wattsPerSf * 15)
+            const totalwatts = wpp * this.state.solarPanels;
+            const totalkwhproducedyearlybysolar = (totalwatts * 1.3) * (1 - percentageSold);
+            const kwhsaved = (this.state.kwhUsed * 12) - totalkwhproducedyearlybysolar;
+            const savedPerYear = Math.round(((kwhsaved * this.state.centsPerKWH) / 100));
+            const finalCost = rawCost * (1 - (percentageSold / 1.25));
             return (
                 <Container>
                     <InfoCard
                         left={{header: numberWithCommas(Math.round(finalCost)), subheader: getString("Buy", "upfront")}}
-                        right={{header: "1000", subheader: getString("Buy", "saved")}}
+                        right={{header: savedPerYear, subheader: getString("Buy", "saved")}}
                     />
                     <ValueSlider
                         name={getString("Buy", "numberOf")}
@@ -69,7 +74,7 @@ class Buy extends Component {
                         value={this.state.excessToSell}
                         units="%"
                         onChange={(n) => this.setState({excessToSell: n})}
-                    /> 
+                    />
                 </Container>
 
             )

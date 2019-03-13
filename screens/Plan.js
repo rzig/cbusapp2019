@@ -40,7 +40,11 @@ class Plan extends Component {
         if(this.camera) {
             const options = {quality: 0.7, base64: true, doNotSave: true}
             const data = await this.camera.takePictureAsync(options)
-            console.warn(data.base64);
+            /**
+             * We send the data here. Omitted because someone's code
+             * didn't follow good security practices and i don't feel
+             * like redoing it now... If you want it let me know.
+             */
         }
     }
 }
